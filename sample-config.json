@@ -1,0 +1,25 @@
+{
+  "bridge": {
+    "name": "homebridge-maex",
+    "username": "DE:AD:BE:EF:BA:BE",
+    "port": 51826,
+    "pin": "031-45-154"
+  },
+  "description": "homebridge",
+  "accessories": [
+    {
+      "accessory": "denon-quickselect",
+      "name": "Internet Radio",
+      "quickselect": 1,
+      "host": "",
+      "zone": 1
+    },
+    {
+      "accessory": "denon-quickselect",
+      "name": "AppleTV",
+      "quickselect": 2,
+      "host": "",
+      "zone": 1
+    }
+  ]
+}

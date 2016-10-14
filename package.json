@@ -1,0 +1,28 @@
+{
+  "name": "homebridge-denon-quickselect",
+  "version": "0.1.0",
+  "description": "homebridge plugin to control QuickSelect on denon receivers",
+  "license": "MIT",
+  "keywords": [
+    "homebridge-plugin",
+    "denon",
+    "volume",
+    "siri",
+    "quickselect"
+  ],
+  "engines": {
+    "node": ">=6.0.0",
+    "homebridge": ">=0.4.0"
+  },
+  "author": {
+    "name": "Max Stockner <mail@bluemaex.de>"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bluemaex/homebridge-denon-quickselect.git"
+  },
+  "dependencies": {
+    "request": "^2.69.0",
+    "xml2js": "^0.4.x"
+  }
+}
