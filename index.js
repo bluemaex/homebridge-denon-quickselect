@@ -15,6 +15,7 @@ function DenonQuickselect(log, config) {
     this.host = config.host
     this.quickselect = config.quickselect || 1
     this.zone = (config.zone || 1) | 0
+    this.pingUrl = config.pingUrl
 
     if (this.zone < 1 && this.zone > 2) {
         this.log.warn('Zone number is not recognized (must be 1 or 2) - assuming zone 1')
@@ -50,6 +51,12 @@ DenonQuickselect.prototype.getState = function(callback) {
 }
 
 DenonQuickselect.prototype.setQuickSelect = function(value, callback) {
+  if(this.pingUrl) {
+    request.get(this.pingUrl, (error, response, body) => {
+      this.log(`pinged ${this.pingUrl} - got: ${error} and ${response.statusCode}}`)
+    })
+  }
+  
   const xml = this.buildXml({
     cmd: {
         attr: { id: '1' },

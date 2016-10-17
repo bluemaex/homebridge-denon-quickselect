@@ -17,6 +17,7 @@
     {
       "accessory": "denon-quickselect",
       "name": "AppleTV",
+      "pingUrl": "http://192.168.0.89:3689",
       "quickselect": 2,
       "host": "",
       "zone": 1
