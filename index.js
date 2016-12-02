@@ -16,6 +16,7 @@ function DenonQuickselect(log, config) {
     this.quickselect = config.quickselect || 1
     this.zone = (config.zone || 1) | 0
     this.pingUrl = config.pingUrl
+    this.matchSource = config.matchSource
 
     if (this.zone < 1 && this.zone > 2) {
         this.log.warn('Zone number is not recognized (must be 1 or 2) - assuming zone 1')
@@ -47,7 +48,20 @@ DenonQuickselect.prototype.doRequest = function(data) {
 }
 
 DenonQuickselect.prototype.getState = function(callback) {
-  callback(null, 0)
+  const xml = this.buildXml({
+    cmd: [
+      { attr: { id: '1' }, val: 'GetAllZonePowerStatus' },
+      { attr: { id: '2' }, val: 'GetAllZoneSource' }
+    ]
+  })
+  
+  this.doRequest(xml).then(resp => {
+    const power = resp.rx.cmd[0].zone1[0] === 'ON'
+    const source = resp.rx.cmd[1].zone1[0].source[0] === this.matchSource
+    
+    callback(null, (power && source) ? 1 : 0)
+  })
+  .catch(e => { this.log.warn(e) })
 }
 
 DenonQuickselect.prototype.setQuickSelect = function(value, callback) {
@@ -58,10 +72,7 @@ DenonQuickselect.prototype.setQuickSelect = function(value, callback) {
   }
   
   const xml = this.buildXml({
-    cmd: {
-        attr: { id: '1' },
-        val: 'SetQuickSelect'
-    },
+    cmd: { attr: { id: '1' }, val: 'SetQuickSelect' },
     zone: this.zoneName,
     value: this.quickselect
   })
