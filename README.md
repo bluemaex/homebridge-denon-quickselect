@@ -14,11 +14,14 @@ Add as many accessoires as you want to your homebridge ``config.json`` in the wa
       "accessory": "denon-quickselect",
       "name": "AppleTV",
       "quickselect": 2,
-      "host": "",
+      "host": "192.168.178.14",
       "zone": 1
     }
 ]
 ```` 
+
+- Don't forget to add the IP address or the hostname of your receiver into the host parameter!
+- Name is what will be shown inside homekit
 
 #### optional pingUrl
 
