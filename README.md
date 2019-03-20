@@ -21,6 +21,7 @@ Add as many accessoires as you want to your homebridge ``config.json`` in the wa
 ```` 
 
 - Don't forget to add the IP address or the hostname of your receiver into the host parameter!
+- For some models like (Denon X1400H) the ip alone does not work, you may need to specify the port too (like 192.168.178.14:8080) see [this issue for more details](https://github.com/bluemaex/homebridge-denon-quickselect/issues/3)
 - Name is what will be shown inside homekit
 
 #### optional pingUrl
